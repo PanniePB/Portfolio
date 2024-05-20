@@ -2,10 +2,16 @@
 @use "./partials/palette.scss";
 @use "./partials/breakpoints.scss";
 
+
+
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  // font-family: "Poppins", sans-serif;
+  // font-family: "Source Sans Pro", sans-serif;
   font-family: "Source Code Pro", sans-serif;
   list-style: none;
 }
@@ -70,17 +76,19 @@ body {
   position: relative;
 
   &__content {
+    // max-width: 800px;
     display: flex;
     flex-direction: column;
     gap: 30px;
 
-    &__heading,
-    &__para1,
-    &__para2,
-    &__para3 {
+    &__heading {
+      position: relative;
       font-size: 56px;
       font-weight: 700;
       line-height: 1.2;
+      width: max-content;
+
+    
 
       @include mixins.desktop_sm {
         font-size: 46px;
@@ -99,6 +107,99 @@ body {
 
       @include mixins.phone_sm {
         font-size: 20px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone_xsm {
+        font-size: 16px;
+        transition: font-size 0.5s ease;
+      }
+    }
+
+    &__para1 {
+      position: relative;
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.2;
+      width: max-content;
+
+      
+
+      @include mixins.desktop_sm {
+        font-size: 46px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.tablet {
+        font-size: 34px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone {
+        font-size: 24px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone_sm {
+        font-size: 20px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone_xsm {
+        font-size: 16px;
+        transition: font-size 0.5s ease;
+      }
+    }
+
+    &__para2 {
+      position: relative;
+      font-size: 32px;
+      font-weight: 700;
+      color: palette.$light-blue;
+      width: max-content;
+
+    
+
+      @include mixins.tablet {
+        font-size: 24px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone {
+        font-size: 20px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone_sm {
+        font-size: 18px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone_xsm {
+        font-size: 16px;
+        transition: font-size 0.5s ease;
+      }
+    }
+    &__para3 {
+      position: relative;
+      font-size: 25px;
+      margin: 20px 0 40px;
+      width: max-content;
+
+      
+
+      @include mixins.tablet {
+        font-size: 22px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone {
+        font-size: 20px;
+        transition: font-size 0.5s ease;
+      }
+
+      @include mixins.phone_sm {
+        font-size: 18px;
         transition: font-size 0.5s ease;
       }
 
@@ -243,6 +344,335 @@ body {
 
 // ----------------about------------------
 
+.about {
+  padding: 130px 10%;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 1.5s ease forwards;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    line-height: 1.5em;
+
+    &__heading {
+      font-size: 40px;
+    }
+
+    &__paragraph {
+      // text-align: justify;
+    }
+
+    &__info {
+      &__tabs {
+        display: flex;
+        margin: 20px 0;
+        justify-content: space-between;
+        max-width: 400px;
+
+        @include mixins.phone_sm {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        &__title {
+          font-size: 18px;
+          font-weight: 500;
+          cursor: pointer;
+          position: relative;
+          width: fit-content;
+
+          &::after {
+            content: "";
+            width: 0;
+            height: 3px;
+            background: palette.$light-blue;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 0.5s;
+          }
+
+          &--active::after {
+            width: 50%;
+          }
+        }
+      }
+
+      &__details {
+        display: none;
+
+        &--active {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    margin: 10px 0;
+
+    &__title {
+      // color: #b54769;
+      color: palette.$light-blue;
+      font-size: 20px;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+
+      &--row {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        @include mixins.tablet {
+          font-size: 14px;
+        }
+      }
+
+      &__section {
+        display: flex;
+        align-items: end;
+        gap: 10px;
+        max-width: 700px;
+        & img {
+          width: 35px;
+
+          @include mixins.tablet {
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ----------------projects------------------
+
+.projects {
+  padding: 130px 10%;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 1.5s ease forwards;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    line-height: 1.5em;
+
+    &__heading {
+      font-size: 40px;
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 40px;
+      margin-top: 20px;
+
+      &__item {
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+
+        &__image {
+          width: 100%;
+          border-radius: 10px;
+          transition: transform 0.5s;
+        }
+
+        &__text {
+          width: 100%;
+          height: 0;
+          background: linear-gradient(rgba(0, 0, 0, 0.6), palette.$light-blue);
+          border-radius: 10px;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          flex-direction: column;
+          padding: 0px 10px;
+          text-align: center;
+          font-size: 18px;
+          transition: height 0.5s;
+
+          @include mixins.desktop_sm {
+            font-size: 14px;
+          }
+
+          & h3 {
+            font-weight: 500;
+            font-size: 24px;
+            font-weight: bold;
+            @include mixins.desktop_sm {
+              font-size: 18px;
+            }
+          }
+
+          & a {
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 60px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+
+            & img {
+              width: 30px;
+              transition: transform 0.3s;
+
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
+
+        &:hover &__image {
+          transform: scale(1.1);
+        }
+
+        &:hover &__text {
+          height: 100%;
+        }
+      }
+
+      @include mixins.desktop_lg {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      @include mixins.desktop_sm {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      @include mixins.tablet {
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      }
+    }
+  }
+}
+
+// ----------------contact------------------
+
+.contact {
+  padding: 200px 10%;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 1.5s ease forwards;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    line-height: 1.5em;
+
+    &__details {
+      display: flex;
+      justify-content: space-between;
+
+      @include mixins.desktop_md {
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      &__left {
+        flex-basis: 35%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        &__heading {
+          font-size: 40px;
+          margin-bottom: 20px;
+        }
+
+        & a {
+          display: flex;
+          color: white;
+          text-decoration: none;
+          & i {
+            margin-right: 5px;
+            font-size: 25px;
+          }
+        }
+      }
+
+      &__right {
+        flex-basis: 60%;
+
+        & form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+
+          & input,
+          textarea {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background-color: grey;
+            padding: 15px;
+            color: black;
+            font-size: 18px;
+            border-radius: 6px;
+            resize: none;
+
+            &::placeholder {
+              color: rgb(37, 36, 36);
+
+              @include mixins.phone {
+                font-size: 16px;
+              }
+            }
+          }
+
+          & button {
+            @include mixins.btn-style(100%, 150px, 8px);
+            padding: 5px 0;
+            font-size: 19px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+          }
+        }
+
+        & span {
+          color: #61b752;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// ----------------about------------------
+
 
    .about {
   min-height: 100vh;
@@ -288,6 +718,8 @@ body {
     }
   }
 }
+
+
 
     
     
