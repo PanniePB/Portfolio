@@ -5,7 +5,6 @@
 
 
 // @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -49,7 +48,7 @@ body {
 
 .nav {
   @include mixins.tablet {
-    display: none;
+    display: block;
   }
   & a {
     font-size: 18px;
@@ -88,7 +87,14 @@ body {
       line-height: 1.2;
       width: max-content;
 
-    
+      @include mixins.typewriter-animation(
+        12,
+        1.5s,
+        0.3s,
+        0.1s,
+        1.8s,
+        forwards
+      );
 
       @include mixins.desktop_sm {
         font-size: 46px;
@@ -123,7 +129,7 @@ body {
       line-height: 1.2;
       width: max-content;
 
-      
+      @include mixins.typewriter-animation(22, 2.75s, 2s, 2s, 2.75s, forwards);
 
       @include mixins.desktop_sm {
         font-size: 46px;
@@ -158,7 +164,7 @@ body {
       color: palette.$light-blue;
       width: max-content;
 
-    
+      @include mixins.typewriter-animation(24, 2.9s, 5s, 5s, 2.9s, forwards);
 
       @include mixins.tablet {
         font-size: 24px;
@@ -186,7 +192,14 @@ body {
       margin: 20px 0 40px;
       width: max-content;
 
-      
+      @include mixins.typewriter-animation(
+        22,
+        2.75s,
+        8.85s,
+        8.85s,
+        0.9s,
+        infinite
+      );
 
       @include mixins.tablet {
         font-size: 22px;
@@ -253,94 +266,7 @@ body {
   display: none;
 }
 
-.hamburger {
-  width: 35px;
-  cursor: pointer;
 
-  appearance: none;
-  background: none;
-  outline: none;
-  border: none;
-
-  @include mixins.desktop_xxl {
-    display: none;
-  }
-  @include mixins.desktop_xl {
-    display: none;
-  }
-
-  @include mixins.tablet {
-    display: block;
-  }
-
-  & .bar,
-  &::after,
-  &::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 5px;
-    background-color: #fff;
-    margin: 6px 0px;
-    transition: 0.4s;
-  }
-
-  &.is-active::before {
-    transform: rotate(-45deg) translate(-8px, 6px);
-  }
-  &.is-active::after {
-    transform: rotate(45deg) translate(-9px, -8px);
-  }
-  &.is-active .bar {
-    opacity: 0;
-  }
-}
-
-.mobile-nav {
-  opacity: 90%;
-  position: fixed;
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100vh;
-  display: block;
-  background: palette.$dark-blue;
-  z-index: 2;
-  padding-top: 120px;
-  transition: 0.4s;
-
-  @include mixins.desktop_xxl {
-    display: none;
-  }
-  @include mixins.desktop_xl {
-    display: none;
-  }
-
-  @include mixins.tablet {
-    display: block;
-  }
-
-  &.is-active {
-    left: 0;
-  }
-
-  a {
-    display: block;
-    width: 100%;
-    max-width: 200px;
-    margin: 0 auto 16px;
-    text-align: center;
-    padding: 12px 16px;
-    background-color: #0b2030;
-
-    color: #ededed;
-    text-decoration: none;
-
-    &:hover {
-      background-color: #0f283b;
-    }
-  }
-}
 
 // ----------------about------------------
 
@@ -467,7 +393,68 @@ body {
   }
 }
 
-// ----------------projects------------------
+// ----------------skills------------------
+.skills{
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	padding-bottom: 50px;
+
+	&__heading{
+		font-size: 40px;  
+		margin-top: 120px;
+		margin-bottom: 40px;
+		padding: 10px 30px;
+		text-align: center;
+		color: #fff;
+		@include mixins.phone {
+		  font-size: 30px;  
+			margin-top: 50px;
+			margin-bottom: 20px;
+		}
+		@include mixins.tablet {
+		  font-size: 30px;  
+			margin-top: 80px;
+			margin-bottom: 20px;
+		}
+		
+		
+	}
+	&__list{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		align-items: center;
+		padding-left: 60px;
+		padding-right: 60px;
+		&__item{
+			margin: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			&__text{
+				margin-top: 20px;
+				font-size: 30px;
+				padding-bottom: 20px;
+				padding-right: 30px;
+				padding-left: 30px;
+				color: #fff;
+				@include mixins.phone {
+					font-size: 20px;  
+					margin-top: 15px;
+				}
+				@include mixins.tablet {
+					font-size: 22px;  
+					margin-top: 18px;
+				}
+				
+			}
+		}
+	}
+}
+// ----------projects---------------
 
 .projects {
   padding: 130px 10%;
@@ -576,6 +563,101 @@ body {
     }
   }
 }
+
+// ----------------contact------------------
+
+.contact {
+  padding: 200px 10%;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 1.5s ease forwards;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    line-height: 1.5em;
+
+    &__details {
+      display: flex;
+      justify-content: space-between;
+
+      @include mixins.desktop_md {
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      &__left {
+        flex-basis: 35%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        &__heading {
+          font-size: 40px;
+          margin-bottom: 20px;
+        }
+
+        & a {
+          display: flex;
+          color: white;
+          text-decoration: none;
+          & i {
+            margin-right: 5px;
+            font-size: 25px;
+          }
+        }
+      }
+
+      &__right {
+        flex-basis: 60%;
+
+        & form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+
+          & input,
+          textarea {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background-color: grey;
+            padding: 15px;
+            color: black;
+            font-size: 18px;
+            border-radius: 6px;
+            resize: none;
+
+            &::placeholder {
+              color: rgb(37, 36, 36);
+
+              @include mixins.phone {
+                font-size: 16px;
+              }
+            }
+          }
+
+          & button {
+            @include mixins.btn-style(100%, 150px, 8px);
+            padding: 5px 0;
+            font-size: 19px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+          }
+        }
+
+        & span {
+          color: #61b752;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
 
 // ----------------contact------------------
 

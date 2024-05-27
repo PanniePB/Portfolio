@@ -50,6 +50,56 @@
   z-index: 2;
 }
 
+
+
+@mixin typewriter-animation(
+  $steps,
+  $duration,
+  $typeDelay,
+  $blinkDelay,
+  $blinkTime,
+  $blinkMode
+) {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  &::before {
+    background: #081b29;
+    animation: typewriter $duration steps($steps) $typeDelay forwards;
+  }
+
+  &::after {
+    width: 0.125em;
+    background: transparent;
+    animation: typewriter $duration steps($steps) $typeDelay forwards,
+      blink $blinkTime steps($steps) $blinkDelay $blinkMode;
+  }
+
+  @keyframes typewriter {
+    to {
+      left: 100%;
+    }
+  }
+
+  @keyframes blink {
+    0% {
+      background: transparent;
+    }
+    50% {
+      background: #ededed;
+    }
+    100% {
+      background: transparent;
+    }
+  }
+}
 // Removed typewriter-animation mixin
 
 // Breakpoint mixins
