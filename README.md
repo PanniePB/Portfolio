@@ -2,7 +2,7 @@
 
 Welcome to my portfolio. Here, you'll discover a collection of my work, projects, and experiences that showcase my skills and expertise. I've always been fascinated by web development, and I've had the privilege of working on various projects that reflect my dedication to excellence and continuous learning.
 
-[Launch the Live Site](https://main--priyanka-batheja.netlify.app/))
+[Launch the Live Site](https://main--priyanka-batheja.netlify.app/)
 
 ## Purpose
 
